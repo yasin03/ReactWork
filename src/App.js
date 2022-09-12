@@ -20,6 +20,11 @@ import BootstrapDynamic from "./components/10-bootstrap/bootstrap-dynamic";
 import ReactIcon from "./components/11-icons/react-icon";
 import Shop from "./components/12-shop/shop";
 import Stateless from "./components/13-state/stateless";
+import Counter from "./components/14-counter/counter";
+import Counter2 from "./components/14-counter/counter2";
+import Birthday from "./components/15-birthday/birthday";
+import UseEffect from "./components/16-useEffect/use-effect";
+import Clock3 from "./components/17-clock3/clock3";
 
 function App() {
   return (
@@ -53,8 +58,13 @@ function App() {
             <BootstrapDynamic />
       <ReactIcon/>
       <Shop />
+            <Stateless/>
+            <Counter />
+            <Counter2 />
+            <Birthday />
+            <UseEffect/>
       */}
-      <Stateless/>
+      <Clock3 />
     </div>
   );
 }
