@@ -25,6 +25,10 @@ import Counter2 from "./components/14-counter/counter2";
 import Birthday from "./components/15-birthday/birthday";
 import UseEffect from "./components/16-useEffect/use-effect";
 import Clock3 from "./components/17-clock3/clock3";
+import UseEffect2 from "./components/18-useEffect/use-effect2";
+import RandomImages from "./components/19-random-images/random-images";
+import UseRef from "./components/20-useRef/useRef";
+import ClassTypeTest from "./components/21-class-type/class-type";
 
 function App() {
   return (
@@ -63,8 +67,12 @@ function App() {
             <Counter2 />
             <Birthday />
             <UseEffect/>
+            <Clock3 />
+            <UseEffect2/>
+            <UseRef />
+            <ClassTypeTest />
       */}
-      <Clock3 />
+      <RandomImages/>
     </div>
   );
 }
