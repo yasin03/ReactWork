@@ -29,6 +29,8 @@ import UseEffect2 from "./components/18-useEffect/use-effect2";
 import RandomImages from "./components/19-random-images/random-images";
 import UseRef from "./components/20-useRef/useRef";
 import ClassTypeTest from "./components/21-class-type/class-type";
+import UserCards from "./components/22-user-cards/user-cards";
+import Countries from "./components/23-countries/countries";
 
 function App() {
   return (
@@ -71,8 +73,10 @@ function App() {
             <UseEffect2/>
             <UseRef />
             <ClassTypeTest />
+            <RandomImages/>
+            <UserCards />
       */}
-      <RandomImages/>
+      <Countries />
     </div>
   );
 }
