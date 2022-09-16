@@ -1,0 +1,91 @@
+import React, { useState } from "react";
+import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
+
+const Form5 = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+  });
+
+  const handleFormData = (e) => {
+    const { name, value } = e.target;
+
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.firstName || formData.firstName < 2) {
+      alert("Please enter your first name");
+      return;
+    }
+    if (!formData.lastName || formData.lastName < 2) {
+      alert("Please enter your last name");
+      return;
+    }
+    if (!formData.email) {
+      alert("Please enter your email");
+      return;
+    }
+    if (!formData.phone) {
+      alert("Please enter your phone number");
+      return;
+    }
+
+    alert("Bundan sonra API call işlemi yapılacak");
+  };
+
+  return (
+    <Container className="mt-5">
+      <Form onSubmit={handleSubmit}>
+        <FormGroup>
+          <Label>İsim</Label>
+          <Input
+            name="firstName"
+            type="text"
+            placeholder="Adınızı Giriniz"
+            value={formData.firstName}
+            onChange={handleFormData}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label>Soyisim</Label>
+          <Input
+            name="lastName"
+            type="text"
+            placeholder="Soyadınızı Giriniz"
+            value={formData.lastName}
+            onChange={handleFormData}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label>Email</Label>
+          <Input
+            name="email"
+            type="text"
+            placeholder="Email Adresinizi Giriniz"
+            value={formData.email}
+            onChange={handleFormData}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label>Phone</Label>
+          <Input
+            name="phone"
+            type="text"
+            placeholder="Telefon Numaranızı Giriniz"
+            value={formData.phone}
+            onChange={handleFormData}
+          />
+        </FormGroup>
+        <Button color="info" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </Container>
+  );
+};
+
+export default Form5;
