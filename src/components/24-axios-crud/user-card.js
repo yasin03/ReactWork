@@ -2,7 +2,15 @@ import React from "react";
 import { Button, Card, CardBody, CardSubtitle, CardTitle } from "reactstrap";
 
 const UserCard = (props) => {
-  const { firstName, lastName, avatar, email } = props;
+  const { id, firstName, lastName, avatar, email, handleDeleteUser } = props;
+
+   const deleteUser = () => { 
+      const resp = window.confirm("Are you sure want to delete?");
+      if(!resp) return;
+
+      handleDeleteUser(id);
+   }
+
   return (
     <Card className="h-100">
       <img alt={`${firstName} ${lastName}`} src={avatar} />

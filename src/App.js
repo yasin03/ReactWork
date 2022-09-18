@@ -1,3 +1,9 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Col, Container, Row } from "reactstrap";
+import Header from "./components/00-home/header/header";
+import Menu from "./components/00-home/menu/menu";
 import HelloWorld from "./components/01-helloWorld/01-HelloWorld";
 import Comp from "./components/02-comp/02-Comp";
 import JsxPractice from "./components/03-jsx/jsx-practice";
@@ -38,11 +44,52 @@ import Form3 from "./components/25-forms/form3";
 import Form4 from "./components/25-forms/form4";
 import Form5 from "./components/25-forms/form5";
 import Form6 from "./components/25-forms/form6";
+import Exchange from "./components/26-exchange/exchange";
+import StoreContext from "./store";
 
 function App() {
+  const [currencies, setCurrencies] = useState({});
+
+  const loadData = async () => {
+    try {
+      const resp = await axios.get("https://api.frankfurter.app/latest?from=TRY");
+      setCurrencies(resp.data.rates);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
   return (
-    <div className="App">
-      {/* <HelloWorld />
+    <StoreContext.Provider value={{ currencies }}>
+      <BrowserRouter>
+        <Header />
+        <Container fluid>
+          <Row>
+            <Col sm={2}>
+              <Menu />
+            </Col>
+            <Col sm={10}>
+              <Routes>
+                <Route path="/hello-world" element={<HelloWorld />} />
+                <Route path="/comp" element={<Comp />} />
+                <Route path="/jsx1" element={<Jsx1 />} />
+                <Route path="/jsx2" element={<Jsx2 />} />
+                <Route path="/jsx3" element={<Jsx3 />} />
+                <Route path="/jsx4" element={<Jsx4 />} />
+                <Route path="/jsx5" element={<Jsx5 />} />
+                <Route path="/jsx-practice" element={<JsxPractice />} />
+                <Route path="/exchange" element={<Exchange />} />
+              </Routes>
+            </Col>
+          </Row>
+        </Container>
+
+        <div className="App">
+          {/* <HelloWorld />
       <Comp />
       <Jsx1 />
       <Jsx2 />
@@ -89,9 +136,11 @@ function App() {
             <Form3 />
             <Form4 />
             <Form5 />
+            <Form6 />
       */}
-      <Form6 />
-    </div>
+        </div>
+      </BrowserRouter>
+    </StoreContext.Provider>
   );
 }
 

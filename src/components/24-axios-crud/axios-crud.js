@@ -73,7 +73,7 @@ const AxiosCrud = () => {
       <Row className="g-4">
         {users.map((user) => (
           <Col sm={6} md={4} lg={3} key={user.id}>
-            <UserCard {...user} />
+            <UserCard {...user} handleDeleteUser={handleDeleteUser} />
           </Col>
         ))}
       </Row>
