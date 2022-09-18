@@ -49,10 +49,13 @@ import StoreContext from "./store";
 
 function App() {
   const [currencies, setCurrencies] = useState({});
+  const [darkMode, setDarkMode] = useState(false);
 
   const loadData = async () => {
     try {
-      const resp = await axios.get("https://api.frankfurter.app/latest?from=TRY");
+      const resp = await axios.get(
+        "https://api.frankfurter.app/latest?from=TRY"
+      );
       setCurrencies(resp.data.rates);
     } catch (err) {
       console.log(err);
@@ -64,32 +67,33 @@ function App() {
   }, []);
 
   return (
-    <StoreContext.Provider value={{ currencies }}>
-      <BrowserRouter>
-        <Header />
-        <Container fluid>
-          <Row>
-            <Col sm={2}>
-              <Menu />
-            </Col>
-            <Col sm={10}>
-              <Routes>
-                <Route path="/hello-world" element={<HelloWorld />} />
-                <Route path="/comp" element={<Comp />} />
-                <Route path="/jsx1" element={<Jsx1 />} />
-                <Route path="/jsx2" element={<Jsx2 />} />
-                <Route path="/jsx3" element={<Jsx3 />} />
-                <Route path="/jsx4" element={<Jsx4 />} />
-                <Route path="/jsx5" element={<Jsx5 />} />
-                <Route path="/jsx-practice" element={<JsxPractice />} />
-                <Route path="/exchange" element={<Exchange />} />
-              </Routes>
-            </Col>
-          </Row>
-        </Container>
+    <StoreContext.Provider value={{ currencies, darkMode, setDarkMode }}>
+      <div className={`${darkMode ? "dark-mode" : ""}`}>
+        <BrowserRouter>
+          <Header />
+          <Container fluid>
+            <Row>
+              <Col sm={2}>
+                <Menu />
+              </Col>
+              <Col sm={10}>
+                <Routes>
+                  <Route path="/hello-world" element={<HelloWorld />} />
+                  <Route path="/comp" element={<Comp />} />
+                  <Route path="/jsx1" element={<Jsx1 />} />
+                  <Route path="/jsx2" element={<Jsx2 />} />
+                  <Route path="/jsx3" element={<Jsx3 />} />
+                  <Route path="/jsx4" element={<Jsx4 />} />
+                  <Route path="/jsx5" element={<Jsx5 />} />
+                  <Route path="/jsx-practice" element={<JsxPractice />} />
+                  <Route path="/exchange" element={<Exchange />} />
+                </Routes>
+              </Col>
+            </Row>
+          </Container>
 
-        <div className="App">
-          {/* <HelloWorld />
+          <div className="App">
+            {/* <HelloWorld />
       <Comp />
       <Jsx1 />
       <Jsx2 />
@@ -138,8 +142,9 @@ function App() {
             <Form5 />
             <Form6 />
       */}
-        </div>
-      </BrowserRouter>
+          </div>
+        </BrowserRouter>
+      </div>
     </StoreContext.Provider>
   );
 }
